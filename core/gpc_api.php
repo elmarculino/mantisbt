@@ -214,7 +214,11 @@ function gpc_get_custom_field( $p_var_name, $p_custom_field_type, $p_default = n
 			break;
 		case CUSTOM_FIELD_TYPE_DATE:
 			$t_date = gpc_get_string( $p_var_name . '_date', $p_default );
-			return strtotime( $t_date );
+			if( $t_date == null ) {
+				return '';
+			} else {
+				return strtotime( $t_date );
+			}
 		default:
 			return gpc_get_string( $p_var_name, $p_default );
 	}
