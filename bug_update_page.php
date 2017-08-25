@@ -323,7 +323,7 @@ if( $t_show_reporter || $t_show_handler || $t_show_due_date ) {
 
 		if( bug_is_overdue( $t_bug_id ) ) {
 			echo '<td class="overdue">';
-		} else {	
+		} else {
 			echo '<td>';
 		}
 
@@ -334,8 +334,9 @@ if( $t_show_reporter || $t_show_handler || $t_show_due_date ) {
 				$t_date_to_display = date( config_get( 'normal_date_format' ), $t_bug->due_date );
 			}
 			echo '<input ' . helper_get_tab_index() . ' type="text" id="due_date" name="due_date" class="datetimepicker input-sm" size="16" ' .
-				'data-picker-locale="' . lang_get_current_datetime_locale() .  '" data-picker-format="' . config_get( 'datetime_picker_format' ) . '" ' .
-				'maxlength="16" value="' . $t_date_to_display . '" />';
+				'data-picker-locale="' . lang_get_current_datetime_locale() .
+                '" data-picker-format="' . convert_date_format_to_momentjs( config_get( 'normal_date_format' ) ) .
+				'" maxlength="20" value="' . $t_date_to_display . '" />';
 			echo '<i class="fa fa-calendar fa-xlg datetimepicker"></i>';
 		} else {
 			if( !date_is_null( $t_bug->due_date ) ) {
