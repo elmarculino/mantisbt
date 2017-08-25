@@ -173,6 +173,7 @@ function gpc_isset_custom_field( $p_var_name, $p_custom_field_type ) {
 
 	switch( $p_custom_field_type ) {
 		case CUSTOM_FIELD_TYPE_DATE:
+		case CUSTOM_FIELD_TYPE_DATETIME:
 			# date field uses datetime picker widget
 			return gpc_isset( $t_field_name . '_date' ) &&
 				!is_blank( gpc_get_string( $t_field_name . '_date' ) );
@@ -213,6 +214,7 @@ function gpc_get_custom_field( $p_var_name, $p_custom_field_type, $p_default = n
 			}
 			break;
 		case CUSTOM_FIELD_TYPE_DATE:
+		case CUSTOM_FIELD_TYPE_DATETIME:
 			$t_date = gpc_get_string( $p_var_name . '_date', $p_default );
 			if( $t_date == null ) {
 				return '';

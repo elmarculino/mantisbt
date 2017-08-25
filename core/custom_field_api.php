@@ -62,6 +62,7 @@ $g_custom_field_types[CUSTOM_FIELD_TYPE_CHECKBOX] = 'standard';
 $g_custom_field_types[CUSTOM_FIELD_TYPE_LIST] = 'standard';
 $g_custom_field_types[CUSTOM_FIELD_TYPE_MULTILIST] = 'standard';
 $g_custom_field_types[CUSTOM_FIELD_TYPE_DATE] = 'standard';
+$g_custom_field_types[CUSTOM_FIELD_TYPE_DATETIME] = 'standard';
 
 foreach( $g_custom_field_types as $t_type ) {
 	require_once( config_get_global( 'core_path' ) . 'cfdefs/cfdef_' . $t_type . '.php' );
@@ -1110,6 +1111,7 @@ function custom_field_validate( $p_field_id, $p_value ) {
 
 			break;
 		case CUSTOM_FIELD_TYPE_DATE:
+		case CUSTOM_FIELD_TYPE_DATETIME:
 			# Date field can be left blank (when field is not marked as required)
 			if( is_blank( $p_value ) ) {
 				break;

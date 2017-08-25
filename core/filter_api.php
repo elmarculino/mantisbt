@@ -2139,7 +2139,7 @@ function filter_get_bug_rows_query_clauses( array $p_filter, $p_project_id = nul
 				# by the WHERE clause and by the DISTINCT clause
 				$t_cf_join_clause = 'LEFT JOIN {custom_field_string} ' . $t_table_name . ' ON {bug}.id = ' . $t_table_name . '.bug_id AND ' . $t_table_name . '.field_id = ' . $t_cfid;
 
-				if( $t_def['type'] == CUSTOM_FIELD_TYPE_DATE ) {
+				if( ( $t_def['type'] == CUSTOM_FIELD_TYPE_DATE ) || ( $t_def['type'] == CUSTOM_FIELD_TYPE_DATETIME ) ){
 					# Define the value field with type cast to integer
 					$t_value_field = 'CAST(COALESCE(NULLIF(' . $t_table_name . '.value, \'\'), \'0\') AS DECIMAL)';
 					switch( $t_field[0] ) {
@@ -3176,7 +3176,7 @@ function filter_gpc_get( array $p_filter = null ) {
 	$f_custom_fields_data 	= $t_filter['custom_fields'];
 	if( is_array( $t_custom_fields ) && ( count( $t_custom_fields ) > 0 ) ) {
 		foreach( $t_custom_fields as $t_cfid ) {
-			if( custom_field_type( $t_cfid ) == CUSTOM_FIELD_TYPE_DATE ) {
+			if( ( custom_field_type( $t_cfid ) == CUSTOM_FIELD_TYPE_DATE ) || ( custom_field_type( $t_cfid ) == CUSTOM_FIELD_TYPE_DATETIME ) ){
 
 				# check if gpc parameters are present, otherwise skip parsing.
 				if( !gpc_isset( 'custom_field_' . $t_cfid . '_control' ) ) {

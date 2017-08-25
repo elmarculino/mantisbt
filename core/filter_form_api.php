@@ -1689,7 +1689,7 @@ function print_filter_plugin_field( $p_field_name, $p_filter_object, array $p_fi
  * @return void
  */
 function print_filter_values_custom_field( array $p_filter, $p_field_id ) {
-	if( CUSTOM_FIELD_TYPE_DATE == custom_field_type( $p_field_id ) ) {
+	if( ( CUSTOM_FIELD_TYPE_DATE == custom_field_type( $p_field_id ) ) || ( CUSTOM_FIELD_TYPE_DATETIME == custom_field_type( $p_field_id ) ) ){
 		print_filter_values_custom_field_date( $p_filter, $p_field_id );
 		return;
 	}
@@ -1796,6 +1796,7 @@ function print_filter_custom_field( $p_field_id, array $p_filter = null ) {
 
 	switch( $t_cfdef['type'] ) {
 		case CUSTOM_FIELD_TYPE_DATE:
+		case CUSTOM_FIELD_TYPE_DATETIME:
 			print_filter_custom_field_date( $p_field_id, $p_filter );
 			break;
 
